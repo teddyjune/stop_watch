@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 class StopWatchScreen extends StatefulWidget {
@@ -8,6 +10,30 @@ class StopWatchScreen extends StatefulWidget {
 }
 
 class _StopWatchScreenState extends State<StopWatchScreen> {
+  Timer? _timer;
+  int _time = 0;
+  bool _isRunning = false;
+  List<String> _lapTimes = [];
+
+  @override
+  void dispose() {
+    _timer?.cancel();
+    super.dispose();
+  }
+
+  void _clickButton() {
+    _isRunning = !_isRunning;
+    if (_isRunning) {
+      _start();
+    } else {
+      _pause();
+    }
+  }
+
+  void _start() {}
+
+  void _pause() {}
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,8 +73,14 @@ class _StopWatchScreenState extends State<StopWatchScreen> {
                 child: const Icon(Icons.refresh),
               ),
               FloatingActionButton(
-                onPressed: () {},
-                child: const Icon(Icons.play_arrow),
+                onPressed: () {
+                  setState(() {
+                    _clickButton();
+                  });
+                },
+                child: _isRunning
+                    ? const Icon(Icons.pause)
+                    : const Icon(Icons.play_arrow),
               ),
               FloatingActionButton(
                 backgroundColor: Colors.green,
