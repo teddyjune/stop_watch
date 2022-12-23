@@ -28,6 +28,15 @@ class _StopWatchScreenState extends State<StopWatchScreen> {
               Text('00'),
             ],
           ),
+          SizedBox(
+            width: 100,
+            height: 200,
+            child: ListView(
+              children: const [
+                Center(child: Text('1111')),
+              ],
+            ),
+          ),
           const Spacer(),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
