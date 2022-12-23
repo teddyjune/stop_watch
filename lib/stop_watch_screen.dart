@@ -30,12 +30,23 @@ class _StopWatchScreenState extends State<StopWatchScreen> {
     }
   }
 
-  void _start() {}
+  void _start() {
+    _timer = Timer(const Duration(milliseconds: 10), () {
+      setState(() {
+        _time++;
+      });
+    });
+  }
 
-  void _pause() {}
+  void _pause() {
+    _timer?.cancel();
+  }
 
   @override
   Widget build(BuildContext context) {
+    int seconds = _time ~/ 100;
+String hundredth = '${_time % 100}';
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('스톱워치'),
@@ -46,12 +57,12 @@ class _StopWatchScreenState extends State<StopWatchScreen> {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.end,
-            children: const [
+            children: [
               Text(
-                '0',
+                '$seconds',
                 style: TextStyle(fontSize: 50),
               ),
-              Text('00'),
+              Text('$hundredth'),
             ],
           ),
           SizedBox(

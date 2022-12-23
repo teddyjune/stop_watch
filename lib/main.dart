@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:stop_watch/stop_watch_screen.dart';
+import 'package:stop_watch/timer_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: StopWatchScreen(),
+      home: TimerPage(),
     );
   }
 }
