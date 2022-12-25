@@ -42,10 +42,17 @@ class _StopWatchScreenState extends State<StopWatchScreen> {
     _timer?.cancel();
   }
 
+  void _reset() {
+    _isRunning = false;
+    _timer?.cancel();
+    _lapTimes.clear();
+    _time = 0;
+  }
+
   @override
   Widget build(BuildContext context) {
     int seconds = _time ~/ 100;
-    String hundredth = '${_time % 100}'.padLeft(2,'0');
+    String hundredth = '${_time % 100}'.padLeft(2, '0');
 
     return Scaffold(
       appBar: AppBar(
@@ -60,9 +67,9 @@ class _StopWatchScreenState extends State<StopWatchScreen> {
             children: [
               Text(
                 '$seconds',
-                style: TextStyle(fontSize: 50),
+                style: const TextStyle(fontSize: 50),
               ),
-              Text('$hundredth'),
+              Text(hundredth),
             ],
           ),
           SizedBox(
@@ -80,7 +87,11 @@ class _StopWatchScreenState extends State<StopWatchScreen> {
             children: [
               FloatingActionButton(
                 backgroundColor: Colors.orange,
-                onPressed: () {},
+                onPressed: () {
+                  setState(() {
+                    _reset();
+                  });
+                },
                 child: const Icon(Icons.refresh),
               ),
               FloatingActionButton(
