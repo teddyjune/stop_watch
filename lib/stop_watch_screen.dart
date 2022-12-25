@@ -13,7 +13,7 @@ class _StopWatchScreenState extends State<StopWatchScreen> {
   Timer? _timer;
   int _time = 0;
   bool _isRunning = false;
-  List<String> _lapTimes = [];
+  final List<String> _lapTimes = [];
 
   @override
   void dispose() {
@@ -31,7 +31,7 @@ class _StopWatchScreenState extends State<StopWatchScreen> {
   }
 
   void _start() {
-    _timer = Timer(const Duration(milliseconds: 10), () {
+    _timer = Timer.periodic(const Duration(milliseconds: 10), (timer) {
       setState(() {
         _time++;
       });
@@ -45,7 +45,7 @@ class _StopWatchScreenState extends State<StopWatchScreen> {
   @override
   Widget build(BuildContext context) {
     int seconds = _time ~/ 100;
-String hundredth = '${_time % 100}';
+    String hundredth = '${_time % 100}'.padLeft(2,'0');
 
     return Scaffold(
       appBar: AppBar(
